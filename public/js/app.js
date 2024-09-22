@@ -25,3 +25,6 @@ weatherForm.addEventListener('submit', (e) => {
         })
     })
 })
+
+console.log('WeatherStack API Key:', weatherstackAPIKey);
+
