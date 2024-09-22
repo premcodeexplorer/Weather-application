@@ -1,6 +1,7 @@
 {
-  "name": "web-server",
+  "name": "weather-app",
   "version": "1.0.0",
+  "description": "",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js"
@@ -8,10 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "A simple weather app using Node.js and Express",
   "dependencies": {
-    "express": "^4.16.4",
-    "hbs": "^4.0.1",
-    "request": "^2.88.0"
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "request": "^2.88.2"
   }
 }
