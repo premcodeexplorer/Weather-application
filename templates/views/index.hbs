@@ -1,37 +1,29 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link rel="icon" href="/img/weather.png">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <div class="container">
+    <div class="main-content">
         {{>header}}
 
-        <div class="main-content">
-            <h1>Get Your Weather</h1>
-            <p>Use this site to find the current weather for your location!</p>
+        <p>Use this site to get your weather!</p>
 
-            <form id="weather-form">
-                <input type="text" placeholder="Enter Location" id="location-input" required>
-                <button type="submit">Search</button>
-            </form>
+        <form>
+            <input placeholder="Location">
+            <button>Search</button>
+        </form>
 
-            <div class="messages">
-                <p id="message-1"></p>
-                <p id="message-2"></p>
-            </div>
-        </div>
-
-        {{>footer}}
+        <p id="message-1"></p>
+        <p id="message-2"></p>
     </div>
+
+    {{>footer}}
 
     <script src="/js/app.js"></script>
 </body>
