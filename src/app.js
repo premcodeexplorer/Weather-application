@@ -68,20 +68,25 @@ app.get('/help', (req, res) => {
 //     })
 // })
 app.get('/weather', (req, res) => {
+    console.log('Received request:', req.query);
+
     if (!req.query.address) {
-        return res.send({ error: 'You must provide an address!' });
+        console.error('Error: No address provided');
+        return res.status(400).send({ error: 'You must provide an address!' });
     }
 
     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
-            console.error('Geocode error:', error); // Log the error for debugging
-            return res.status(400).send({ error }); // Send a 400 status code for bad requests
+            console.error('Geocode error:', error);
+            return res.status(400).send({ error });
         }
+
+        console.log('Geocoding successful:', { latitude, longitude, location });
 
         forecast(latitude, longitude, weatherstackAPIKey, (error, forecastData) => {
             if (error) {
-                console.error('Forecast error:', error); // Log the error for debugging
-                return res.status(400).send({ error }); // Send a 400 status code for bad requests
+                console.error('Forecast error:', error);
+                return res.status(400).send({ error });
             }
 
             res.send({
