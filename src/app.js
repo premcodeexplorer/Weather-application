@@ -42,31 +42,56 @@ app.get('/help', (req, res) => {
     })
 })
 
+// app.get('/weather', (req, res) => {
+//     if (!req.query.address) {
+//         return res.send({
+//             error: 'You must provide an address!'
+//         })
+//     }
+
+//     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+//         if (error) {
+//             return res.send({ error })
+//         }
+
+//         forecast(latitude, longitude, (error, forecastData) => {
+//             if (error) {
+//                 return res.send({ error })
+//             }
+
+//             res.send({
+//                 forecast: forecastData,
+//                 location,
+//                 address: req.query.address
+//             })
+//         })
+//     })
+// })
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
-        return res.send({
-            error: 'You must provide an address!'
-        })
+        return res.send({ error: 'You must provide an address!' });
     }
 
     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
-            return res.send({ error })
+            console.error('Geocode error:', error); // Log the error for debugging
+            return res.status(400).send({ error }); // Send a 400 status code for bad requests
         }
 
-        forecast(latitude, longitude, (error, forecastData) => {
+        forecast(latitude, longitude, weatherstackAPIKey, (error, forecastData) => {
             if (error) {
-                return res.send({ error })
+                console.error('Forecast error:', error); // Log the error for debugging
+                return res.status(400).send({ error }); // Send a 400 status code for bad requests
             }
 
             res.send({
                 forecast: forecastData,
                 location,
                 address: req.query.address
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
 
 app.get('/products', (req, res) => {
     if (!req.query.search) {
