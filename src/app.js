@@ -21,11 +21,17 @@ hbs.registerPartials(partialsPath);
 app.use(express.static(publicDirectoryPath));
 
 app.get('', (req, res) => {
+  try {
     res.render('index', {
-        title: 'Weather',
-        name: 'Prem Baba'
+      title: 'Weather',
+      name: 'Prem Baba'
     });
+  } catch (error) {
+    console.error('Error rendering index:', error);
+    res.status(500).send('An error occurred');
+  }
 });
+
 
 app.get('/about', (req, res) => {
     res.render('about', {
