@@ -3,6 +3,7 @@ const express = require('express')
 const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
+const weatherstackAPIKey = process.env.WEATHERSTACK_API_KEY;
 
 const app = express()
 
