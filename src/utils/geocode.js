@@ -1,7 +1,7 @@
 const request = require('request')
 
 const geocode = (address, callback) => {
-    const url = 'https://api.mapbox.com/search/geocode/v6/forward?q=' + address + '&access_token=pk.eyJ1IjoiYmFiYXBwIiwiYSI6ImNtMTlneWllNDE3eWcybHNjYWEwdzRuamgifQ.eThkiQxDsPQxUYePLMB1jA&limit=1'
+    const url = 'https://api.mapbox.com/search/geocode/v6/forward?q=' + address + '&access_token=' + process.env.MAPBOX_API_KEY + '&limit=1'
 
     request({ url, json: true }, (error, {body}) => {
         if (error) {
